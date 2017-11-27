@@ -1,0 +1,69 @@
+html{   
+  width: 100%;   
+  height: 100%;   
+  overflow: hidden;   
+  font-style: sans-serif;   
+}
+div{
+  display: block;
+}
+body{   
+  color: #000;
+  margin: 0;
+  overflow: hidden;
+  font: 400 13px arial, Microsoft Yahei!important; 
+  background-color: #eee;  
+}     
+.sub{
+  background: #00a5a5;
+  color: #fff;
+  padding: 10px 0;
+  line-height: 25px;
+  width: 75%;
+  display: inline-block;
+  margin-top: 20px;
+  font-weight: 900;
+  font-size: 130%;
+}
+
+.cen{
+  text-align: center;
+  width: 400px;
+  margin: 0 auto;
+  height: 362px;
+  position: absolute;
+  top: 50%;
+  margin-top: -181px;
+  left: 50%;
+  margin-left: -200px;
+}
+.txt{
+  width: 90%;
+  padding: 4px 20px;
+  border-radius: 22px;
+  border: solid 1px #ccc;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 3.6em;
+  outline: 0;
+  font-size: 110%;
+}
+.bg {
+  background: url('../images/bg.jpg') no-repeat;
+  width:100%;
+  height:1000px;
+  background-size: cover；
+}
+.bg-blur {
+  float: left;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  -webkit-filter: blur(15px);
+  -moz-filter: blur(15px);
+  -o-filter: blur(15px);
+  -ms-filter: blur(15px);
+  filter: blur(5px);
+}

@@ -10,7 +10,7 @@
         <div>
           <router-link to="/">返回</router-link>
         </div>
-      </div>   
+      </div>
     </div>
   </div>
 </template>

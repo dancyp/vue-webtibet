@@ -6,6 +6,8 @@ import Register from '../components/register.vue'
 import Cho from '../components/cho.vue'
 import Header from '../components/ccom/header.vue'
 import List from '../components/ccom/list.vue'
+import Dict from '../components/dict.vue'
+import Sep from '../components/sep.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -25,11 +27,17 @@ export default new Router({
     path:'/cho',
     component:Cho
   },{
-    path:'/header',
+    path:'/heaxsder',
     component:Header
   },{
     path:'/list',
     component:List
+  },{
+    path:'/dict',
+    component:Dict
+  },{
+    path:'/sep',
+    component:Sep
   }
   ]
 })
