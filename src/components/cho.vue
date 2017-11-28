@@ -5,7 +5,7 @@
     </el-header>
     <el-main>
       <div id='chosbox'>
-        <span><router-link to="/sep"><h3>字典管理</h3></head></router-link></span>
+        <span><router-link to="/dict"><h3>字典管理</h3></head></router-link></span>
         <span><router-link to="/sep"><h3>分隔符管理</h3></router-link></span>
         <span><router-link to="/sep"><h3>数字管理</h3></router-link></span>
         <span><router-link to="/sep"><h3>人名管理</h3></router-link></span>
