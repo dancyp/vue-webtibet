@@ -8,6 +8,7 @@ import Header from '../components/ccom/header.vue'
 import List from '../components/ccom/list.vue'
 import Dict from '../components/dict.vue'
 import Sep from '../components/sep.vue'
+import Table from '../components/table.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -38,6 +39,9 @@ export default new Router({
   },{
     path:'/sep',
     component:Sep
+  },{
+    path:'/table',
+    component:Table
   }
   ]
 })

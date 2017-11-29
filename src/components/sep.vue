@@ -10,27 +10,57 @@
       <el-main>
           <el-table
             :data="tableData"
-            style="width: 100%">
+            height="750"
+            border
+            stripe
+            highlight-current-row
+            @cell-click="cellClick"
+            style="width: 68%"
+            >
             <el-table-column
               prop="type"
-              label="分隔符"
+              v-bind:label="man_type"
+              type="input"
               width="180">
+             <!-- <template scope="scope" >
+                <el-input v-if="scope.row.disp1" size="small" v-model="scope.row.name" placeholder="请输入名字" @change="handleEdit(scope.$index, scope.row)"></el-input> 
+                <span v-else>{{scope.row.type}}</span>
+              </template>-->
+             <!-- <template scope="scope">
+                <el-input v-model="scope.row.type" v-if="scope.row.disp1"
+                @blur="loseFcous(scope.$index, scope.row)" > </el-input>
+                <span style="margin-left: 10px" v-else>{{ scope.row.type }}</span>
+              </template>-->
+              <template scope="scope">
+               <el-input v-model="scope.row.type" v-if="scope.row.edit"
+                @blur="loseFcous(scope.$index, scope.row)" @keyup.enter.native="editItem(scope.row)"> </el-input>
+               <span style="margin-left: 10px" v-else>{{ scope.row.type }}</span>
+              </template>
             </el-table-column>
             <el-table-column
               prop="content"
               label="内容"
+              >
+                <template scope="scope">
+                  <el-input v-model="scope.row.content" v-if="scope.row.edit"
+                  @blur="loseFcous(scope.$index, scope.row)" @keyup.enter.native="editItem(scope.row)"> </el-input>
+                  <span style="margin-left: 10px" v-else>{{ scope.row.content }}</span>
+                </template>
+                
+            </el-table-column>
+            
+            <el-table-column
+              fixed="right"
+              label="操作"
               width="180">
+              <template slot-scope="scope">
+                <el-button @click="editItem(scope.row)" type="text" size="small">修改</el-button>
+                <el-button @click="deleteItem(scope.row)" type="text" size="small">删除</el-button>
+              </template>
             </el-table-column>
-            <el-table-column
-              prop="empty"
-              label="">
-            </el-table-column>
-            <el-table-column
-              prop="addone"
-              label="添加规则"
-            >
-            </el-table-column>
+            
           </el-table>
+          <el-button type="text" icon="el-icon-circle-plus" @click='addNewItem'>添加规则</el-button>
       </el-main>
   </el-container>
 </template>
@@ -43,30 +73,92 @@ export default {
       manage_type: '分隔符管理',
       dic_lang: '藏语',
       user: 'admin',
+      man_type: '分隔符',
       tableData: [{
             type: '2016-05-02',
-            content: '王小虎',
-            empty: '上海市普陀区金沙江路 1518 弄',
-            addone: '删除'
+            content: '1',
+            edit:false
           }, {
             type: '2016-05-04',
-            content: '王小虎',
-            empty: '上海市普陀区金沙江路 1517 弄',
-            addone: '删除'
+            content: '2',
+            edit:false
+
           }, {
             type: '2016-05-01',
-            content: '王小虎',
-            empty: '上海市普陀区金沙江路 1519 弄',
-            addone: '删除'
+            content: '3',
+            edit:false
+
           }, {
             type: '2016-05-03',
-            content: '王小虎',
-            empty: '上海市普陀区金沙江路 1516 弄',
-            addone: '删除'
+            content: '4',
+            edit:false
+          }, {
+            type: '2016-05-03',
+            content: '5',
+            edit:false
+          }, {
+            type: '2016-05-03',
+            content: '6',
+            edit:false
+          }, {
+            type: '2016-05-03',
+            content: '7',
+            edit:false
+          }, {
+            type: '2016-05-03',
+            content: '8',
+            edit:false
+          }, {
+            type: '2016-05-03',
+            content: '9',
+            edit:false
+          }, {
+            type: '2016-05-03',
+            content: '10',
+            edit:false
           }]
+    }
+  },
+  methods: {
+
+    addNewItem: function(){
+      if(this.tableData[this.tableData.length-1].type!=='原分隔符'){
+        this.tableData.push({type:'原分隔符',content:'翻译分隔符'})
+      }else
+        alert('还存在未修改的新增内容')
+    },
+    handleClick(row) {
+        console.log(row);
+      },
+    deleteItem: function(row){
+     const i = this.tableData.indexOf(row);
+     console.log(row);
+     this.tableData.splice(i,1);
+    },
+    //onCellClick(row, column, cell, event) {
+    //    console.log(cell);
+    //  },
+    loseFcous(index, row,cell) {
+      row.edit=false;
+      console.log("losefocus")
+      },
+    cellClick(row, column,cell) {
+      if(column.fixed!=='right')
+        row.edit=true;
+      console.log("cell")
+      console.log(cell)
+
+      console.log("column")
+      console.log(column)
+    },
+    editItem: function(row){
+      console.log(row)
+      console.log("edit")
+      row.edit=false;
     }
   }
 }
+
 </script>
 
 <style>
