@@ -123,7 +123,7 @@ export default {
 
     addNewItem: function(){
       if(this.tableData[this.tableData.length-1].type!=='原分隔符'){
-        this.tableData.push({type:'原分隔符',content:'翻译分隔符'})
+        this.tableData.push({type:'原分隔符',content:'翻译分隔符',edit:false})
       }else
         alert('还存在未修改的新增内容')
     },

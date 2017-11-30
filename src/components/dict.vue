@@ -1,83 +1,132 @@
 <template>
-  <el-container>
-     <el-header>
-         <div class = 'title'>
-             <span>{{manage_type}}</span>
-             <span>欢迎使用多语言专家系统-{{dic_lang}}</span>
-             <span>{{user}} <span>返回</span></span>
-         </div>
-     </el-header>
-    <el-aside>
-        <div class = "diclist">
-            <div class="list-group">
-                <button type="button" class="list-group-item">A</button>
-                <button type="button" class="list-group-item">B</button>
-                <button type="button" class="list-group-item">C</button>
-                <button type="button" class="list-group-item">D</button>
-                <button type="button" class="list-group-item">E</button>
-                <button type="button" class="list-group-item">F</button>
-                <button type="button" class="list-group-item">G</button>
-                <button type="button" class="list-group-item">H</button>
-                <button type="button" class="list-group-item">I</button>
-                <button type="button" class="list-group-item">J</button>
-                <button type="button" class="list-group-item">K</button>
-                <button type="button" class="list-group-item">L</button>
-                <button type="button" class="list-group-item">M</button>
-                <button type="button" class="list-group-item">N</button>
-                <button type="button" class="list-group-item">O</button>
-                <button type="button" class="list-group-item">P</button>
-                <button type="button" class="list-group-item">Q</button>
-                <button type="button" class="list-group-item">R</button>
-                <button type="button" class="list-group-item">S</button>
-                <button type="button" class="list-group-item">T</button>
-                <button type="button" class="list-group-item">U</button>
-                <button type="button" class="list-group-item">V</button>
-                <button type="button" class="list-group-item">W</button>
-                <button type="button" class="list-group-item">X</button>
-                <button type="button" class="list-group-item">Y</button>
-                <button type="button" class="list-group-item">Z</button>
-            </div>
-	    </div>
-        <div class = "wordlist">
-            <ul class="list-group">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-            </ul>
-        </div>
-    </el-aside>
-    <el-main>
+  <el-container id="wholeWindow">
+    <el-head width="100%">
+        <el-menu
+          :default-active="activeIndex"
+          mode="horizontal"
+          id="wordindex"
+          @select="handleSelect"
+          background-color="#545c64"
+          text-color="#fff"
+          active-text-color="#ffd04b">
+          <el-menu-item index="1">A</el-menu-item>
+          <el-menu-item index="2">B</el-menu-item>
+          <el-menu-item index="3">C</el-menu-item>
+          <el-menu-item index="4">D</el-menu-item>
+          <el-menu-item index="5">E</el-menu-item>
+          <el-menu-item index="6">F</el-menu-item>
+          <el-menu-item index="7">G</el-menu-item>
+          <el-menu-item index="8">H</el-menu-item>
+          <el-menu-item index="9">I</el-menu-item>
+          <el-menu-item index="10">J</el-menu-item>
+          <el-menu-item index="11">K</el-menu-item>
+          <el-menu-item index="12">L</el-menu-item>
+          <el-menu-item index="13">M</el-menu-item>
+          <el-menu-item index="14">N</el-menu-item>
+          <el-menu-item index="15">O</el-menu-item>
+          <el-menu-item index="16">P</el-menu-item>
+          <el-menu-item index="17">Q</el-menu-item>
+          <el-menu-item index="18">R</el-menu-item>
+          <el-menu-item index="19">S</el-menu-item>
+          <el-menu-item index="20">T</el-menu-item>
+          <el-menu-item index="21">U</el-menu-item>
+          <el-menu-item index="22">V</el-menu-item>
+          <el-menu-item index="23">W</el-menu-item>
+          <el-menu-item index="24">X</el-menu-item>
+          <el-menu-item index="25">Y</el-menu-item>
+          <el-menu-item index="26">Z</el-menu-item>
+        </el-menu>
+    </el-head>
+    <el-container>
+      <el-aside id="wordList">
+        <el-table
+          :data="ListTable"
+          height="750"
+          border
+          highlight-current-row
+          @cell-click="cellClick">
+            <el-table-column
+              prop="english">
+            </el-table-column>
+        </el-table>
+      </el-aside>
+      <el-header 
+      id="search">
 
-    </el-main>
-  </el-container>   
+      </el-header>
+    </el-container>
+  </el-container>
+
 </template>
 <script>
-export default {
-  name:'',
-  data () {
-    return {
-        manage_type: '字典管理',
-        dic_lang: '藏语',
-        user: 'admin'
+  export default {
+    data() {
+      return {
+        activeIndex: '1',
+        wordListDisp: "none",
+        ListTable:[{
+          english:"a",
+          chinese:"啊"
+        },{
+          english:"a",
+          chinese:"啊"
+        },{
+          english:"a",
+          chinese:"啊"
+        },{
+          english:"a",
+          chinese:"啊"
+        },{
+          english:"a",
+          chinese:"啊"
+        },{
+          english:"a",
+          chinese:"啊"
+        },{
+          english:"a",
+          chinese:"啊"
+        },{
+          english:"a",
+          chinese:"啊"
+        },{
+          english:"a",
+          chinese:"啊"
+        },{
+          english:"a",
+          chinese:"啊"
+        },{
+          english:"a",
+          chinese:"啊"
+        },{
+          english:"a",
+          chinese:"啊"
+        },{
+          english:"a",
+          chinese:"啊"
+        },{
+          english:"a",
+          chinese:"啊"
+        },{
+          english:"a",
+          chinese:"啊"
+        }]
+      };
+    },
+    methods: {
+      handleSelect(key, keyPath) {
+        console.log(key, keyPath);
+      }
     }
   }
-}
 </script>
 <style>
-    .title{
-        display: flex;
-        justify-content: space-between;
-    }
-    .el-header{
-        background-color: #409EFF;
-        align-items: center;
-    }
-    .wordlist{
-        display: none;
-    }
-    
+#wordindex{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+#wholeWindow{
+  display: flex;
+  flex-direction: column;
+}
 </style>
-
-
