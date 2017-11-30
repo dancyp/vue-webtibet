@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container id="asd">
       <el-header>
             <div class = 'title'>
                 <span>{{manage_type}}</span>
@@ -120,10 +120,9 @@ export default {
     }
   },
   methods: {
-
     addNewItem: function(){
-      if(this.tableData[this.tableData.length-1].type!=='原分隔符'){
-        this.tableData.push({type:'原分隔符',content:'翻译分隔符',edit:false})
+      if(this.tableData[this.tableData.length-1].type!=='原符号'){
+        this.tableData.push({type:'原符号',content:'翻译符号',edit:false})
       }else
         alert('还存在未修改的新增内容')
     },
@@ -158,21 +157,19 @@ export default {
     }
   }
 }
-
 </script>
 
 <style>
    .title{
         display: flex;
-        justify-content: space-between;
+        justify-content: space-between; 
     }
     .el-header{
         background-color: #409EFF;
         align-items: center;
     }
-    .wordlist{
-        display: none;
+    #asd{
+      background-color:black;
     }
 </style>
-
 

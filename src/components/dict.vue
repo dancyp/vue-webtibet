@@ -1,62 +1,52 @@
 <template>
   <el-container id="wholeWindow">
-    <el-head width="100%">
-        <el-menu
-          :default-active="activeIndex"
-          mode="horizontal"
-          id="wordindex"
-          @select="handleSelect"
-          background-color="#545c64"
-          text-color="#fff"
-          active-text-color="#ffd04b">
-          <el-menu-item index="1">A</el-menu-item>
-          <el-menu-item index="2">B</el-menu-item>
-          <el-menu-item index="3">C</el-menu-item>
-          <el-menu-item index="4">D</el-menu-item>
-          <el-menu-item index="5">E</el-menu-item>
-          <el-menu-item index="6">F</el-menu-item>
-          <el-menu-item index="7">G</el-menu-item>
-          <el-menu-item index="8">H</el-menu-item>
-          <el-menu-item index="9">I</el-menu-item>
-          <el-menu-item index="10">J</el-menu-item>
-          <el-menu-item index="11">K</el-menu-item>
-          <el-menu-item index="12">L</el-menu-item>
-          <el-menu-item index="13">M</el-menu-item>
-          <el-menu-item index="14">N</el-menu-item>
-          <el-menu-item index="15">O</el-menu-item>
-          <el-menu-item index="16">P</el-menu-item>
-          <el-menu-item index="17">Q</el-menu-item>
-          <el-menu-item index="18">R</el-menu-item>
-          <el-menu-item index="19">S</el-menu-item>
-          <el-menu-item index="20">T</el-menu-item>
-          <el-menu-item index="21">U</el-menu-item>
-          <el-menu-item index="22">V</el-menu-item>
-          <el-menu-item index="23">W</el-menu-item>
-          <el-menu-item index="24">X</el-menu-item>
-          <el-menu-item index="25">Y</el-menu-item>
-          <el-menu-item index="26">Z</el-menu-item>
-        </el-menu>
-    </el-head>
-    <el-container>
-      <el-aside id="wordList">
+    <el-header>
+      <div class = 'title'>
+        <span>词典</span>
+        <span>欢迎使用多语言专家系统-{{dic_lang}}</span>
+        <span>{{user}} <span>返回</span></span>
+      </div>
+    </el-header>
+    <el-container id="Window" >
+      <el-aside width="15%">
         <el-table
-          :data="ListTable"
-          height="750"
-          border
-          highlight-current-row
-          @cell-click="cellClick">
-            <el-table-column
-              prop="english">
-            </el-table-column>
-        </el-table>
+            :data="IniList"
+            height="750"
+            border
+            id="IniIdx"
+            highlight-current-row
+            @cell-click="cellIniClick">
+              <el-table-column
+                prop="Ini">
+              </el-table-column>
+          </el-table>
       </el-aside>
-      <el-header 
-      id="search">
-
-      </el-header>
+      <el-container>
+        <el-aside 
+        id="wordList"
+        width="24%"
+        class="dontdisplay">
+          <el-table
+            :data="ListTable"
+            height="750"
+            border
+            highlight-current-row
+            @cell-click="cellWordClick"
+            id="listtable">
+              <el-table-column
+                prop="english">
+              </el-table-column>
+          </el-table>
+        </el-aside>
+        <el-main>
+          <div id="head">
+            <input type="text" size="large" placeholder="要查询的单词">
+            <el-button type="primary" icon="el-icon-search"size="mini">搜索</el-button>
+          </div> 
+        </el-main>
+      </el-container>
     </el-container>
   </el-container>
-
 </template>
 <script>
   export default {
@@ -64,6 +54,61 @@
       return {
         activeIndex: '1',
         wordListDisp: "none",
+        dic_lang:"藏语",
+        user:'admin',
+        IniList:[{
+          Ini:"A"
+        },{
+          Ini:"B"
+        },{
+          Ini:"C"
+        },{
+          Ini:"D"
+        },{
+          Ini:"E"
+        },{
+          Ini:"F"
+        },{
+          Ini:"G"
+        },{
+          Ini:"H"
+        },{
+          Ini:"I"
+        },{
+          Ini:"J"
+        },{
+          Ini:"K"
+        },{
+          Ini:"L"
+        },{
+          Ini:"M"
+        },{
+          Ini:"N"
+        },{
+          Ini:"O"
+        },{
+          Ini:"P"
+        },{
+          Ini:"Q"
+        },{
+          Ini:"R"
+        },{
+          Ini:"S"
+        },{
+          Ini:"T"
+        },{
+          Ini:"U"
+        },{
+          Ini:"V"
+        },{
+          Ini:"W"
+        },{
+          Ini:"X"
+        },{
+          Ini:"Y"
+        },{
+          Ini:"Z"
+        }],
         ListTable:[{
           english:"a",
           chinese:"啊"
@@ -113,8 +158,9 @@
       };
     },
     methods: {
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
+      cellIniClick(row,cell){
+        console.log(row);
+        $("#wordList").removeClass("dontdisplay");
       }
     }
   }
@@ -125,8 +171,23 @@
   justify-content: space-around;
   flex-wrap: wrap;
 }
+#Window{
+  display: flex;
+  flex-direction: row;
+}
+#searchButton{
+  height: 15px;
+  text-align: center;
+}
 #wholeWindow{
   display: flex;
   flex-direction: column;
 }
+.el-header{
+        background-color: #409EFF;
+        align-items: center;
+    }
+.dontdisplay{
+  display:none;
+  }
 </style>
