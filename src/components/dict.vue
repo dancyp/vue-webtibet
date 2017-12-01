@@ -1,11 +1,11 @@
 <template>
   <el-container id="wholeWindow">
     <el-header>
-      <div class = 'title'>
+
         <span>词典</span>
         <span>欢迎使用多语言专家系统-{{dic_lang}}</span>
-        <span>{{user}} <span>返回</span></span>
-      </div>
+        <span>{{user}} <router-link to="/cho">返回</router-link></span>
+ 
     </el-header>
     <el-container id="Window" >
       <el-aside width="15%">
@@ -31,8 +31,7 @@
             height="750"
             border
             highlight-current-row
-            @cell-click="cellWordClick"
-            id="listtable">
+            @cell-click="cellWClick">
               <el-table-column
                 prop="english">
               </el-table-column>
@@ -42,7 +41,12 @@
           <div id="head">
             <input type="text" size="large" placeholder="要查询的单词">
             <el-button type="primary" icon="el-icon-search"size="mini">搜索</el-button>
-          </div> 
+          </div>
+          <div >
+            <div>a</div>
+            <div>第一个字母</div>
+            <div>藏语</div>
+          </div>
         </el-main>
       </el-container>
     </el-container>
@@ -160,12 +164,18 @@
     methods: {
       cellIniClick(row,cell){
         console.log(row);
-        $("#wordList").removeClass("dontdisplay");
+        var a = document.querySelector("#wordList");
+        a.className="dodisplay";
+        console.log("celliniclick");
+      },
+      cellWClick(row,cell){
+        console.log(row);
       }
     }
   }
 </script>
 <style>
+
 #wordindex{
   display: flex;
   justify-content: space-around;
@@ -184,10 +194,14 @@
   flex-direction: column;
 }
 .el-header{
+        display: flex;
         background-color: #409EFF;
-        align-items: center;
+        justify-content: space-between;
     }
 .dontdisplay{
   display:none;
   }
+.dodisplay{
+  display:block;
+}
 </style>

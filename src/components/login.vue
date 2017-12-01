@@ -3,16 +3,7 @@
     <img src="../assets/logo.png">
     <div class='container'>
       <p><span>用户:</span><input type="text"></p>
-      <p><span>密码:</span><input type="password"></p>
-      <el-select v-model="value" placeholder="请选择词典">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-      
+      <p><span>密码:</span><input type="password"></p>  
       <div>
         <input type="submit" value="登录">
         <div>
@@ -22,9 +13,7 @@
     </div>
   </div>
 </template>
-
 <script>
-
   export default {
     name: 'log',
     data () {
@@ -50,7 +39,6 @@
       }
     }
 }
-
 </script>
 <style>
 	

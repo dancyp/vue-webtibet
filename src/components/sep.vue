@@ -1,11 +1,11 @@
 <template>
-  <el-container id="asd">
+  <el-container>
       <el-header>
-            <div class = 'title'>
-                <span>{{manage_type}}</span>
+           
+                <span>{{manage_type}}管理</span>
                 <span>欢迎使用多语言专家系统-{{dic_lang}}</span>
-                <span>{{user}} <span>返回</span></span>
-            </div>
+                <span>{{user}} <router-link to="/cho">返回</router-link></span>
+           
       </el-header>
       <el-main>
           <el-table
@@ -19,7 +19,7 @@
             >
             <el-table-column
               prop="type"
-              v-bind:label="man_type"
+              v-bind:label="manage_type"
               type="input"
               width="180">
              <!-- <template scope="scope" >
@@ -70,10 +70,9 @@ export default {
   name:'',
   data () {
     return {
-      manage_type: '分隔符管理',
+      manage_type: '分隔符',
       dic_lang: '藏语',
       user: 'admin',
-      man_type: '分隔符',
       tableData: [{
             type: '2016-05-02',
             content: '1',
@@ -160,16 +159,11 @@ export default {
 </script>
 
 <style>
-   .title{
-        display: flex;
-        justify-content: space-between; 
-    }
     .el-header{
+        display: flex;
         background-color: #409EFF;
-        align-items: center;
+        justify-content: space-between;
     }
-    #asd{
-      background-color:black;
-    }
+    
 </style>
 
