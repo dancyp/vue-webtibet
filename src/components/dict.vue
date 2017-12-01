@@ -25,7 +25,7 @@
         <el-aside 
         id="wordList"
         width="24%"
-        class="dontdisplay">
+        v-bind:class='{dodisplay:showlist,dontdisplay:(!showlist)}'>
           <el-table
             :data="ListTable"
             height="750"
@@ -60,6 +60,7 @@
         wordListDisp: "none",
         dic_lang:"藏语",
         user:'admin',
+        showlist: false,
         IniList:[{
           Ini:"A"
         },{
@@ -164,8 +165,10 @@
     methods: {
       cellIniClick(row,cell){
         console.log(row);
-        var a = document.querySelector("#wordList");
-        a.className="dodisplay";
+        //var a = document.querySelector("#wordList");
+        //a.className="dodisplay";
+        this.$data.showlist=true;
+        
         console.log("celliniclick");
       },
       cellWClick(row,cell){
