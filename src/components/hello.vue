@@ -11,14 +11,11 @@
       <br>
       <ul>
         <li><span><router-link to="/cho">查询选择</router-link></span></li>
-        <li><span><router-link to="/dict">词典</router-link></span></li>
-        <li><span><router-link to="/sep">分隔符</router-link></span></li>
         <li><span><router-link to="/cholang">选择语言</router-link></span></li>
         <li><span><router-link to="/newlog">新登陆</router-link></span></li>
       </ul>
     </div>
   </div>
-
 </template>
 
 <script>

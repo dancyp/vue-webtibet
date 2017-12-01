@@ -25,13 +25,16 @@ export default new Router({
     path:'/cho',
     component:Cho
   },{
-    path:'/list',
-    component:List
-  },{
     path:'/dict',
     component:Dict
   },{
-    path:'/sep',
+    path:'/sep/:view',
+    component:Sep
+  },{
+    path:'/sep/:view',
+    component:Sep
+  },{
+    path:'/sep/:view',
     component:Sep
   },{
     path:'/table',

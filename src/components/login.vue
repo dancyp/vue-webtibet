@@ -19,23 +19,6 @@
     data () {
       return {
         msg: 'dsdsd',
-          options: [{
-            value: '选项1',
-            label: '藏语'
-          }, {
-            value: '选项2',
-            label: '乌尔都语'
-          }, {
-            value: '选项3',
-            label: '其他1'
-          }, {
-            value: '选项4',
-            label: '其他2'
-          }, {
-            value: '选项5',
-            label: '其他3'
-          }],
-          value: ''
       }
     }
 }

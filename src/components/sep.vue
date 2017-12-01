@@ -117,6 +117,18 @@ export default {
             edit:false
           }]
     }
+  }, 
+   created: function () {
+    // `this` 指向 vm 实例
+    console.log('created!')
+    console.log(this.$route.params.view);
+    if(this.$route.params.view==="separator"){
+      this.$data.manage_type="分隔符";
+    }else if(this.$route.params.view==="num"){
+      this.$data.manage_type="数字";
+    }else{
+      this.$data.manage_type="人名"
+    }
   },
   methods: {
     addNewItem: function(){
