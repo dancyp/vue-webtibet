@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="../assets/logo.png">
+        <img src="../assets/diclogo.png" height="256" width="256">
         <div>
             <p>语言选择</p>
         </div>
@@ -38,7 +38,17 @@ export default {
           }],
           value: ''
       }
-    }
+    },
+    created: function () {
+    // `this` 指向 vm 实例
+    axios.get('http://139.224.15.56:3000/dic/languages')
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+  },
 }
 </script>
 <style>

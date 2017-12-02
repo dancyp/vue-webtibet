@@ -1,19 +1,25 @@
 <template>
-  <div class="hello">
-    <img src="../assets/logo.png">
-    <h2>{{ msg }}</h2>
-    <h1>多语言专家系统</h1>
-    <ul>
-      <li><span><router-link to="/login">登录</router-link></span></li>
-    </ul>
-    <div class='tiaoshi'>
-      以下链接用于页面调试
-      <br>
+  <div class="father-div">
+    <div class="page-bg">
+      <img src="" alt="">
+    </div>
+    <div class="hello">
+      <img src="../assets/diclogo.png" height="384" width="384">
+      <h2>{{ msg }}</h2>
+      <h1>多语言专家系统</h1>
       <ul>
-        <li><span><router-link to="/cho">查询选择</router-link></span></li>
-        <li><span><router-link to="/cholang">选择语言</router-link></span></li>
-        <li><span><router-link to="/uploadfile">上传文件</router-link></span></li>
+        
+        <li><span><router-link to="/login"><h4>登录</h4></router-link></span></li>
       </ul>
+      <div class='tiaoshi'>
+        以下链接用于页面调试
+        <br>
+        <ul>
+          <li><span><router-link to="/cho">查询选择</router-link></span></li>
+          <li><span><router-link to="/cholang">选择语言</router-link></span></li>
+          <li><span><router-link to="/uploadfile">上传文件</router-link></span></li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -46,7 +52,6 @@ a {
   color: #42b983;
 }
 span {
-  background: black;
   width: 140px;
 }
 
