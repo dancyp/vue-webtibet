@@ -6,9 +6,8 @@ import Cho from '../components/cho.vue'
 import List from '../components/ccom/list.vue'
 import Dict from '../components/dict.vue'
 import Sep from '../components/sep.vue'
-import Table from '../components/table.vue'
 import Cholang from '../components/cholang.vue'
-import Newlog from '../components/newlog.vue'
+import Uploadfile from '../components/uploadfile.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -37,14 +36,11 @@ export default new Router({
     path:'/sep/:view',
     component:Sep
   },{
-    path:'/table',
-    component:Table
-  },{
     path:'/cholang',
     component:Cholang
   },{
-    path:'/newlog',
-    component:Newlog
+    path:'/uploadfile',
+    component:Uploadfile
   }
   ]
 })

@@ -11,6 +11,7 @@
         <span><router-link to="/sep/separator"><h3>分隔符管理</h3></router-link></span>
         <span><router-link to="/sep/num"><h3>数字管理</h3></router-link></span>
         <span><router-link to="/sep/name"><h3>人名管理</h3></router-link></span>
+        <span><router-link to="/uploadfile"><h3>文件上传</h3></router-link></span>
       </div>
     </el-main>
   </el-container>  

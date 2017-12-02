@@ -155,11 +155,11 @@ export default {
     cellClick(row, column,cell) {
       if(column.fixed!=='right')
         row.edit=true;
-      console.log("cell")
-      console.log(cell)
-
-      console.log("column")
-      console.log(column)
+      for(var i=0;i<this.tableData.length;i++){
+        if(i!==this.tableData.indexOf(row)){
+          this.tableData[i].edit=false;
+        }
+      }
     },
     editItem: function(row){
       console.log(row)

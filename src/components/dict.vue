@@ -1,11 +1,9 @@
 <template>
   <el-container id="wholeWindow">
     <el-header>
-
         <span>词典</span>
         <span>欢迎使用多语言专家系统-{{dic_lang}}</span>
         <span>{{user}} <router-link to="/cho">返回</router-link></span>
- 
     </el-header>
     <el-container id="Window" >
       <el-aside width="15%">
@@ -17,7 +15,8 @@
             highlight-current-row
             @cell-click="cellIniClick">
               <el-table-column
-                prop="Ini">
+                prop="Ini"
+                label="首字母">
               </el-table-column>
           </el-table>
       </el-aside>
@@ -33,7 +32,8 @@
             highlight-current-row
             @cell-click="cellWClick">
               <el-table-column
-                prop="english">
+                prop="english"
+                label="单词列表">
               </el-table-column>
           </el-table>
         </el-aside>

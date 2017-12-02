@@ -4,9 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
+import uploader from 'vue-simple-uploader'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'bootstrap/dist/css/bootstrap.css'
 Vue.use(ElementUI)
+Vue.use(uploader)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
@@ -14,5 +16,10 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  
+  render(createElement) {
+    return createElement(App)
+  }
+
 })

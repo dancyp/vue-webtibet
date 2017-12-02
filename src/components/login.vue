@@ -2,14 +2,13 @@
   <div id='log'>
     <img src="../assets/logo.png">
     <div class='container'>
-      <p><span>用户:</span><input type="text"></p>
-      <p><span>密码:</span><input type="password"></p>  
-      <div>
-        <input type="submit" value="登录">
-        <div>
-          <router-link to="/">返回</router-link>
-        </div>
-      </div>   
+      <form action="" method="post">
+        用户: <input type="text" name="account" />
+        <br>  
+        密码: <input type="password" name="password" />
+        <br>
+        <input type="submit" value="Submit" />
+      </form> 
     </div>
   </div>
 </template>
