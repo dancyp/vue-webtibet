@@ -30,7 +30,7 @@ export default new Router({
     path:'/sep/:view',
     component:Sep
   },{
-    path:'/sep/:view',
+    path:'/sep/:view/:lang',
     component:Sep
   },{
     path:'/sep/:view',

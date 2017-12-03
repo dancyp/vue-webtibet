@@ -59,6 +59,7 @@
         activeIndex: '1',
         wordListDisp: "none",
         dic_lang:"藏语",
+        lang_key:'tibet',
         user:'admin',
         showlist: false,
         IniList:[{

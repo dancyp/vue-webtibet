@@ -54,7 +54,7 @@
               label="操作"
               width="180">
               <template slot-scope="scope">
-                <el-button @click="editItem(scope.row)" type="text" size="small">修改</el-button>
+                <el-button @click="editItem(scope.row)" type="text" size="small">确认修改</el-button>
                 <el-button @click="deleteItem(scope.row)" type="text" size="small">删除</el-button>
               </template>
             </el-table-column>
@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name:'',
   data () {
@@ -73,67 +74,63 @@ export default {
       manage_type: '分隔符',
       dic_lang: '藏语',
       user: 'admin',
-      tableData: [{
-            type: '2016-05-02',
-            content: '1',
-            edit:false
-          }, {
-            type: '2016-05-04',
-            content: '2',
-            edit:false
-
-          }, {
-            type: '2016-05-01',
-            content: '3',
-            edit:false
-
-          }, {
-            type: '2016-05-03',
-            content: '4',
-            edit:false
-          }, {
-            type: '2016-05-03',
-            content: '5',
-            edit:false
-          }, {
-            type: '2016-05-03',
-            content: '6',
-            edit:false
-          }, {
-            type: '2016-05-03',
-            content: '7',
-            edit:false
-          }, {
-            type: '2016-05-03',
-            content: '8',
-            edit:false
-          }, {
-            type: '2016-05-03',
-            content: '9',
-            edit:false
-          }, {
-            type: '2016-05-03',
-            content: '10',
-            edit:false
-          }]
+      tableData: [],
+      addedNewOne: false
     }
   }, 
    created: function () {
     // `this` 指向 vm 实例
     console.log('created!')
     console.log(this.$route.params.view);
+    var a = this.tableData;
     if(this.$route.params.view==="separator"){
       this.$data.manage_type="分隔符";
+      axios.get('http://139.224.15.56:3000/add/tibet/sep/show')
+        .then(function (response) {
+            console.log(response);
+            for(var i = 0;i<response.data.result.length;i++){
+              a.push({type:response.data.result[i].arg,content:response.data.result[i].content,edit:false});
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }else if(this.$route.params.view==="num"){
       this.$data.manage_type="数字";
+      axios.get('http://139.224.15.56:3000/add/tibet/num/show')
+        .then(function (response) {
+            console.log(response);
+            for(var i = 0;i<response.data.result.length;i++){
+              a.push({type:response.data.result[i].arg,content:response.data.result[i].content,edit:false});
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
     }else{
-      this.$data.manage_type="人名"
+      this.$data.manage_type="人名";
+      axios.get('http://139.224.15.56:3000/add/tibet/name/show')
+        .then(function (response) {
+            console.log(response);
+            for(var i = 0;i<response.data.result.length;i++){
+              a.push({type:response.data.result[i].arg,content:response.data.result[i].content,edit:false});
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
+    
   },
   methods: {
     addNewItem: function(){
       if(this.tableData[this.tableData.length-1].type!=='原符号'){
-        this.tableData.push({type:'原符号',content:'翻译符号',edit:false})
+        this.tableData.push({type:'原符号',content:'翻译符号',edit:true})
+        for(var i=0;i<this.tableData.length-2;i++){
+          this.tableData[i].edit=false;
+        }
+        this.addedNewOne = true;
       }else
         alert('还存在未修改的新增内容')
     },
@@ -143,6 +140,22 @@ export default {
     deleteItem: function(row){
      const i = this.tableData.indexOf(row);
      console.log(row);
+     const j = this.tableData.indexOf(row);
+      var baseurl = "http://192.168.0.102:3000/add/tibet";
+      if(this.$data.manage_type==="分隔符"){
+        baseurl = baseurl+"/sep";
+      }else if(this.$data.manage_type==="数字"){
+        baseurl = baseurl+"/num";
+      }else{
+        baseurl = baseurl+"/name";
+      }
+      axios.post(baseurl+"/delete",{arg:row.type})
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
      this.tableData.splice(i,1);
     },
     //onCellClick(row, column, cell, event) {
@@ -162,8 +175,37 @@ export default {
       }
     },
     editItem: function(row){
-      console.log(row)
-      console.log("edit")
+      console.log("edit");
+      console.log(row);
+      console.log(row.type);
+      console.log(row.content);
+      const j = this.tableData.indexOf(row);
+      var baseurl = "http://192.168.0.102:3000/add/tibet";
+      if(this.$data.manage_type==="分隔符"){
+        baseurl = baseurl+"/sep";
+      }else if(this.$data.manage_type==="数字"){
+        baseurl = baseurl+"/num";
+      }else{
+        baseurl = baseurl+"/name";
+      }
+      if(j===this.tableData.length-1&&this.addedNewOne===true){
+        this.addedNewOne = false;
+        axios.post(baseurl+"/create",{arg:row.type,content:row.content})
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+      }else{
+        axios.post(baseurl+"/update",{arg:row.type,content:row.content})
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+      }
       row.edit=false;
     }
   }

@@ -8,7 +8,9 @@ import uploader from 'vue-simple-uploader'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import axios from 'axios'
-Vue.prototype.$http = axios
+
+Vue.use(axios)
+
 Vue.use(ElementUI)
 Vue.use(uploader)
 Vue.config.productionTip = false

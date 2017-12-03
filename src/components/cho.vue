@@ -25,7 +25,8 @@
     return {
       user:"admin",
       manage_type:"选择功能",
-      dic_lang: '藏语'
+      dic_lang: '藏语',
+      lang_key: 'tibet'
     }
   }
 }

@@ -16,34 +16,34 @@
         </div>   
         <div>
             <br>
-            <input type="submit" value="确认">
+            <span><router-link to="/cho">确定</router-link></span>
         </div>
     </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
   name:'',
   data () {
       return {
         msg: 'dsdsd',
-          options: [{
-            value: '选项1',
-            label: '藏语'
-          }, {
-            value: '选项2',
-            label: '乌尔都语'
-          }, {
-            value: '选项3',
-            label: '其他'
-          }],
+        dic_lang:"",
+        lang_key:"tibet",
+          options: [],
           value: ''
       }
     },
     created: function () {
     // `this` 指向 vm 实例
+    var a = this.$data.options;
+
     axios.get('http://139.224.15.56:3000/dic/languages')
         .then(function (response) {
             console.log(response);
+            for(var i = 0;i<response.data.lang_config.chinese.length;i++){
+                a.push({value:response.data.lang_config.english[i],label:response.data.lang_config.chinese[i]});
+                console.log(a);
+            }
         })
         .catch(function (error) {
             console.log(error);
