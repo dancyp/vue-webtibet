@@ -46,6 +46,13 @@
             <div >{{word[0]}}</div>
             <div >{{word[1]}}</div>
             <div >{{word[2]}}</div>
+           <div>
+                <template>
+                  <el-input v-model="word[2]" v-if="this.flag" 
+                  @blur="loseFocus()" @keyup.enter.native="editItem()"> </el-input>
+                  <span style="margin-left: 10px" v-else @click="textClick">{{ word[2] }}</span>
+                </template>
+            </div>
           </div>
         </el-main>
       </el-container>
@@ -64,6 +71,7 @@ import axios from 'axios'
         user:'admin',
         searchWord:'',
         showlist: false,
+        flag: false,
         word:[],
         IniList:[{
           Ini:"A"
@@ -122,8 +130,25 @@ import axios from 'axios'
       };
     },
     methods: {
+      textClick(){
+        this.flag=true;
+      },
+      loseFocus(){
+        this.flag=false;
+      },
+      editItem(){
+        var baseurl = "http://139.224.15.56:3000/dic/tibet/word/update";
+         axios.post(baseurl,{eng:this.word[0],chinese:this.word[1],zang:this.word[2]})
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+        this.flag=false;
+      },
       cellIniClick(row,cell){
-        var baseurl = "http://192.168.0.102:3000/dic/tibet/words?initial=";
+        var baseurl = "http://139.224.15.56:3000/dic/tibet/words?initial=";
         var a = this.ListTable;
         this.ListTable.splice(0,this.ListTable.length);
         this.word.splice(0,this.word.length);
@@ -143,7 +168,7 @@ import axios from 'axios'
       },
       cellWClick(row,cell){
         console.log(row);
-        var baseurl = "http://192.168.0.102:3000/dic/tibet/word/";
+        var baseurl = "http://139.224.15.56:3000/dic/tibet/word/";
         baseurl = baseurl + row.english;
         this.word.splice(0,this.word.length);
         var array = this.word;
@@ -159,7 +184,7 @@ import axios from 'axios'
         console.log(this.word);
       },
       searchButton(){
-        var baseurl = "http://192.168.0.102:3000/dic/tibet/word/";
+        var baseurl = "http://139.224.15.56:3000/dic/tibet/word/";
         baseurl = baseurl + this.$data.searchWord;
         this.word.splice(0,this.word.length);
         var array = this.word;
