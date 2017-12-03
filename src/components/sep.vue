@@ -141,7 +141,7 @@ export default {
      const i = this.tableData.indexOf(row);
      console.log(row);
      const j = this.tableData.indexOf(row);
-      var baseurl = "http://192.168.0.102:3000/add/tibet";
+      var baseurl = "http://139.224.15.56:3000/add/tibet";
       if(this.$data.manage_type==="分隔符"){
         baseurl = baseurl+"/sep";
       }else if(this.$data.manage_type==="数字"){
@@ -180,7 +180,7 @@ export default {
       console.log(row.type);
       console.log(row.content);
       const j = this.tableData.indexOf(row);
-      var baseurl = "http://192.168.0.102:3000/add/tibet";
+      var baseurl = "http://139.224.15.56:3000/add/tibet";
       if(this.$data.manage_type==="分隔符"){
         baseurl = baseurl+"/sep";
       }else if(this.$data.manage_type==="数字"){
