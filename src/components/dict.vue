@@ -39,13 +39,13 @@
         </el-aside>
         <el-main>
           <div id="head">
-            <input type="text" size="large" placeholder="要查询的单词">
-            <el-button type="primary" icon="el-icon-search"size="mini">搜索</el-button>
+            <input type="text" size="large" placeholder="要查询的单词" v-model="searchWord">
+            <el-button type="primary" icon="el-icon-search"size="mini" @click="searchButton">搜索</el-button>
           </div>
           <div >
-            <div>a</div>
-            <div>第一个字母</div>
-            <div>藏语</div>
+            <div >{{word[0]}}</div>
+            <div >{{word[1]}}</div>
+            <div >{{word[2]}}</div>
           </div>
         </el-main>
       </el-container>
@@ -53,6 +53,7 @@
   </el-container>
 </template>
 <script>
+import axios from 'axios'
   export default {
     data() {
       return {
@@ -61,7 +62,9 @@
         dic_lang:"藏语",
         lang_key:'tibet',
         user:'admin',
+        searchWord:'',
         showlist: false,
+        word:[],
         IniList:[{
           Ini:"A"
         },{
@@ -115,66 +118,62 @@
         },{
           Ini:"Z"
         }],
-        ListTable:[{
-          english:"a",
-          chinese:"啊"
-        },{
-          english:"a",
-          chinese:"啊"
-        },{
-          english:"a",
-          chinese:"啊"
-        },{
-          english:"a",
-          chinese:"啊"
-        },{
-          english:"a",
-          chinese:"啊"
-        },{
-          english:"a",
-          chinese:"啊"
-        },{
-          english:"a",
-          chinese:"啊"
-        },{
-          english:"a",
-          chinese:"啊"
-        },{
-          english:"a",
-          chinese:"啊"
-        },{
-          english:"a",
-          chinese:"啊"
-        },{
-          english:"a",
-          chinese:"啊"
-        },{
-          english:"a",
-          chinese:"啊"
-        },{
-          english:"a",
-          chinese:"啊"
-        },{
-          english:"a",
-          chinese:"啊"
-        },{
-          english:"a",
-          chinese:"啊"
-        }]
+        ListTable:[]
       };
     },
     methods: {
       cellIniClick(row,cell){
-        console.log(row);
-        //var a = document.querySelector("#wordList");
-        //a.className="dodisplay";
+        var baseurl = "http://192.168.0.102:3000/dic/tibet/words?initial=";
+        var a = this.ListTable;
+        this.ListTable.splice(0,this.ListTable.length);
+        this.word.splice(0,this.word.length);
         this.$data.showlist=true;
-        
-        console.log("celliniclick");
+        baseurl = baseurl + row.Ini.toLowerCase();
+        axios.get(baseurl)
+        .then(function (response) {
+            console.log(response);
+            console.log(response.data.result);
+            for(var i = 0;i<response.data.result.length;i++){
+              a.push(response.data.result[i]);
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
       },
       cellWClick(row,cell){
         console.log(row);
+        var baseurl = "http://192.168.0.102:3000/dic/tibet/word/";
+        baseurl = baseurl + row.english;
+        this.word.splice(0,this.word.length);
+        var array = this.word;
+         axios.get(baseurl)
+         .then(function (response) {
+            array.push(response.data.result.english);
+            array.push(response.data.result.chinese);
+            array.push(response.data.result.zang);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+        console.log(this.word);
+      },
+      searchButton(){
+        var baseurl = "http://192.168.0.102:3000/dic/tibet/word/";
+        baseurl = baseurl + this.$data.searchWord;
+        this.word.splice(0,this.word.length);
+        var array = this.word;
+        axios.get(baseurl)
+         .then(function (response) {
+            array.push(response.data.result.english);
+            array.push(response.data.result.chinese);
+            array.push(response.data.result.zang);
+        })
+        .catch(function (error) {
+            console.log(error);
+        }); 
       }
+    
     }
   }
 </script>
