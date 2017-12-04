@@ -1,9 +1,9 @@
 <template>
   <el-container>
-    <el-header>
-                <span>{{manage_type}}</span>
-                <span>欢迎使用多语言专家系统-{{dic_lang}}</span>
-                <span>{{user}} <router-link to="/cholang">返回</router-link></span>       
+      <el-header>
+        <span>{{manage_type}}</span>
+        <span>欢迎使用多语言专家系统-{{dic_lang}}</span>
+        <span>{{user}} <router-link to="/cholang">返回</router-link></span>       
       </el-header>
     <el-main>
       <div id='chosbox'>
@@ -15,7 +15,6 @@
       </div>
     </el-main>
   </el-container>  
-     
 </template>
 
 <script>
@@ -33,7 +32,6 @@
 </script>
 
 <style>
- 
     .el-header{
       display: flex;
       background-color: #409EFF;

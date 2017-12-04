@@ -28,7 +28,7 @@
         user:"admin",
         options: {
           // 可通过 https://github.com/simple-uploader/Uploader/tree/develop/samples/Node.js 示例启动服务
-          target: '//localhost:3000/upload',
+          target: 'http://139.224.15.56:3000/fileupload',
           testChunks: false
         },
         attrs: {
