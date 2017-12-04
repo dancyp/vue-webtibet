@@ -1,4 +1,6 @@
 <template>
+<div>
+    <img src="../assets/diclogo.png" height="256" width="256">
 <div class="login-box" id="app" >
  <el-row>
 	<el-col :span="8">
@@ -20,10 +22,35 @@
 	</el-col>
  </el-row>
 </div> 
+</div>
 </template>
 <script>
+import axios from "axios"
 export default {
-  
+  name: 'log',
+    data () {
+      return {
+        name:'',
+        password:''
+      }
+    },
+    methods:{
+        check(){
+        var baseurl = "http://139.224.15.56:3000/user/login"
+        axios.post(baseurl,{name:this.$data.name,password:this.$data.password})
+        .then(function (response) {
+            console.log(response);
+            if(response.data.msg==="success"){
+                window.location.href='http://localhost:8080/#/cholang';
+            }else{
+                alert("错误！");
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+        }
+    }
 }
 </script>
 <style>

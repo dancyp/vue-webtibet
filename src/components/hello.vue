@@ -8,17 +8,8 @@
       <h2>{{ msg }}</h2>
       <h1>多语言专家系统</h1>
       <ul>
-        
-        <li><span><router-link to="/login"><h4>登录</h4></router-link></span></li>
+        <li><span><router-link to="/newlogin"><h4>登录</h4></router-link></span></li>
       </ul>
-      <div class='tiaoshi'>
-        以下链接用于页面调试
-        <br>
-        <ul>
-          <li><span><router-link to="/cholang">选择语言</router-link></span></li>
-          <li><span><router-link to="/uploadfile">上传文件</router-link></span></li>
-        </ul>
-      </div>
     </div>
   </div>
 </template>

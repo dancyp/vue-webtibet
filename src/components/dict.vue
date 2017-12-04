@@ -45,7 +45,6 @@
           <div >
             <div >{{word[0]}}</div>
             <div >{{word[1]}}</div>
-            <div >{{word[2]}}</div>
            <div>
                 <template>
                   <el-input v-model="word[2]" v-if="this.flag" 

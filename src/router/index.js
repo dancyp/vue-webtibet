@@ -8,6 +8,7 @@ import Dict from '../components/dict.vue'
 import Sep from '../components/sep.vue'
 import Cholang from '../components/cholang.vue'
 import Uploadfile from '../components/uploadfile.vue'
+import Newlogin from '../components/newlogin.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -35,6 +36,9 @@ export default new Router({
   },{
     path:'/uploadfile',
     component:Uploadfile
+  },{
+    path:'/newlogin',
+    component:Newlogin
   }
   ]
 })
