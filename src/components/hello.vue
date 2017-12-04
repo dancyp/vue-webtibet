@@ -15,7 +15,6 @@
         以下链接用于页面调试
         <br>
         <ul>
-          <li><span><router-link to="/cho">查询选择</router-link></span></li>
           <li><span><router-link to="/cholang">选择语言</router-link></span></li>
           <li><span><router-link to="/uploadfile">上传文件</router-link></span></li>
         </ul>

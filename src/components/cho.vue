@@ -7,10 +7,10 @@
       </el-header>
     <el-main>
       <div id='chosbox'>
-        <span><router-link to="/dict"><h3>字典管理</h3></head></router-link></span>
-        <span><router-link to="/sep/separator"><h3>分隔符管理</h3></router-link></span>
-        <span><router-link to="/sep/num"><h3>数字管理</h3></router-link></span>
-        <span><router-link to="/sep/name"><h3>人名管理</h3></router-link></span>
+        <span><router-link :to="'/dict/'+url_lang"><h3>字典管理</h3></head></router-link></span>
+        <span><router-link :to="'/sep/separator/'+url_lang"><h3>分隔符管理</h3></router-link></span>
+        <span><router-link :to="'/sep/num/'+url_lang"><h3>数字管理</h3></router-link></span>
+        <span><router-link :to="'/sep/name/'+url_lang"><h3>人名管理</h3></router-link></span>
         <span><router-link to="/uploadfile"><h3>文件上传</h3></router-link></span>
       </div>
     </el-main>
@@ -25,7 +25,18 @@
       user:"admin",
       manage_type:"选择功能",
       dic_lang: '藏语',
-      lang_key: 'tibet'
+      url_lang: 'tibet'
+    }
+  },
+  created:function(){
+    this.$data.url_lang=this.$route.params.language;
+    console.log(this.$data.url_lang);
+    if(this.$data.url_lang==="tibet"){
+      this.$data.dic_lang="藏语";
+    }else if(this.$data.url_lang==="urdu"){
+      this.$data.dic_lang="乌尔都语";
+    }else{
+      this.$data.dic_lang="未选择语言";
     }
   }
 }

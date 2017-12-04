@@ -73,6 +73,7 @@ export default {
     return {
       manage_type: '分隔符',
       dic_lang: '藏语',
+      url_lang:"",
       user: 'admin',
       tableData: [],
       addedNewOne: false
@@ -80,12 +81,19 @@ export default {
   }, 
    created: function () {
     // `this` 指向 vm 实例
-    console.log('created!')
-    console.log(this.$route.params.view);
+    this.$data.url_lang=this.$route.params.language;
+    if(this.$data.url_lang==="tibet"){
+        this.$data.dic_lang="藏语";
+      }else if(this.$data.url_lang==="urdu"){
+        this.$data.dic_lang="乌尔都语";
+      }else{
+        this.$data.dic_lang="未选择语言";
+      }
+
     var a = this.tableData;
     if(this.$route.params.view==="separator"){
       this.$data.manage_type="分隔符";
-      axios.get('http://139.224.15.56:3000/add/tibet/sep/show')
+      axios.get('http://139.224.15.56:3000/add/'+this.url_lang+'/sep/show')
         .then(function (response) {
             console.log(response);
             for(var i = 0;i<response.data.result.length;i++){
@@ -97,7 +105,7 @@ export default {
         });
     }else if(this.$route.params.view==="num"){
       this.$data.manage_type="数字";
-      axios.get('http://139.224.15.56:3000/add/tibet/num/show')
+      axios.get('http://139.224.15.56:3000/add/'+this.url_lang+'/num/show')
         .then(function (response) {
             console.log(response);
             for(var i = 0;i<response.data.result.length;i++){
@@ -110,7 +118,7 @@ export default {
 
     }else{
       this.$data.manage_type="人名";
-      axios.get('http://139.224.15.56:3000/add/tibet/name/show')
+      axios.get('http://139.224.15.56:3000/add/'+this.url_lang+'/name/show')
         .then(function (response) {
             console.log(response);
             for(var i = 0;i<response.data.result.length;i++){
@@ -141,7 +149,7 @@ export default {
      const i = this.tableData.indexOf(row);
      console.log(row);
      const j = this.tableData.indexOf(row);
-      var baseurl = "http://139.224.15.56:3000/add/tibet";
+      var baseurl = "http://139.224.15.56:3000/add/"+this.url_lang;
       if(this.$data.manage_type==="分隔符"){
         baseurl = baseurl+"/sep";
       }else if(this.$data.manage_type==="数字"){
@@ -180,7 +188,7 @@ export default {
       console.log(row.type);
       console.log(row.content);
       const j = this.tableData.indexOf(row);
-      var baseurl = "http://139.224.15.56:3000/add/tibet";
+      var baseurl = "http://139.224.15.56:3000/add/"+this.url_lang;
       if(this.$data.manage_type==="分隔符"){
         baseurl = baseurl+"/sep";
       }else if(this.$data.manage_type==="数字"){

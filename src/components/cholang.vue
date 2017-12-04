@@ -16,7 +16,7 @@
         </div>   
         <div>
             <br>
-            <span><router-link to="/cho">确定</router-link></span>
+            <span><router-link :to="'/cho/'+value">确定</router-link></span>
         </div>
     </div>
 </template>
@@ -26,9 +26,7 @@ export default {
   name:'',
   data () {
       return {
-        msg: 'dsdsd',
         dic_lang:"",
-        lang_key:"tibet",
           options: [],
           value: ''
       }

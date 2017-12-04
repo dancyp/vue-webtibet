@@ -67,7 +67,7 @@ import axios from 'axios'
         activeIndex: '1',
         wordListDisp: "none",
         dic_lang:"藏语",
-        lang_key:'tibet',
+        url_lang:'tibet',
         user:'admin',
         searchWord:'',
         showlist: false,
@@ -129,6 +129,16 @@ import axios from 'axios'
         ListTable:[]
       };
     },
+    created:function(){
+      this.$data.url_lang=this.$route.params.language;
+      if(this.$data.url_lang==="tibet"){
+        this.$data.dic_lang="藏语";
+      }else if(this.$data.url_lang==="urdu"){
+        this.$data.dic_lang="乌尔都语";
+      }else{
+        this.$data.dic_lang="未选择语言";
+      }
+    },
     methods: {
       textClick(){
         this.flag=true;
@@ -137,7 +147,7 @@ import axios from 'axios'
         this.flag=false;
       },
       editItem(){
-        var baseurl = "http://139.224.15.56:3000/dic/tibet/word/update";
+        var baseurl = "http://139.224.15.56:3000/dic/"+this.url_lang+"/word/update";
          axios.post(baseurl,{eng:this.word[0],chinese:this.word[1],zang:this.word[2]})
         .then(function (response) {
             console.log(response);
@@ -148,7 +158,7 @@ import axios from 'axios'
         this.flag=false;
       },
       cellIniClick(row,cell){
-        var baseurl = "http://139.224.15.56:3000/dic/tibet/words?initial=";
+        var baseurl = "http://139.224.15.56:3000/dic/"+this.url_lang+"/words?initial=";
         var a = this.ListTable;
         this.ListTable.splice(0,this.ListTable.length);
         this.word.splice(0,this.word.length);
@@ -168,7 +178,7 @@ import axios from 'axios'
       },
       cellWClick(row,cell){
         console.log(row);
-        var baseurl = "http://139.224.15.56:3000/dic/tibet/word/";
+        var baseurl = "http://139.224.15.56:3000/dic/"+this.url_lang+"/word/";
         baseurl = baseurl + row.english;
         this.word.splice(0,this.word.length);
         var array = this.word;
@@ -184,7 +194,7 @@ import axios from 'axios'
         console.log(this.word);
       },
       searchButton(){
-        var baseurl = "http://139.224.15.56:3000/dic/tibet/word/";
+        var baseurl = "http://139.224.15.56:3000/dic/"+this.url_lang+"/word/";
         baseurl = baseurl + this.$data.searchWord;
         this.word.splice(0,this.word.length);
         var array = this.word;

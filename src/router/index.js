@@ -21,19 +21,13 @@ export default new Router({
 		path:'/login',
 		component:Login
 	},{
-    path:'/cho',
+    path:'/cho/:language',
     component:Cho
   },{
-    path:'/dict',
+    path:'/dict/:language',
     component:Dict
   },{
-    path:'/sep/:view',
-    component:Sep
-  },{
-    path:'/sep/:view/:lang',
-    component:Sep
-  },{
-    path:'/sep/:view',
+    path:'/sep/:view/:language',
     component:Sep
   },{
     path:'/cholang',
