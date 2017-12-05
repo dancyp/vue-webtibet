@@ -3,7 +3,7 @@
     <el-header>
         <span>词典</span>
         <span>欢迎使用多语言专家系统-{{dic_lang}}</span>
-        <span>{{user}} <router-link to="/cho">返回</router-link></span>
+        <span>{{user}} <router-link :to="'/cho/'+url_lang">返回</router-link></span>
     </el-header>
     <el-container id="Window" >
       <el-aside width="15%">
@@ -176,9 +176,10 @@ import axios from 'axios'
         });
       },
       cellWClick(row,cell){
-        console.log(row);
         var baseurl = "http://139.224.15.56:3000/dic/"+this.url_lang+"/word/";
-        baseurl = baseurl + row.english;
+        baseurl = baseurl + row.english.replace(/\//g, "%2F").replace(/\?/g, "%3F");
+        
+        console.log(baseurl);
         this.word.splice(0,this.word.length);
         var array = this.word;
          axios.get(baseurl)
@@ -194,7 +195,7 @@ import axios from 'axios'
       },
       searchButton(){
         var baseurl = "http://139.224.15.56:3000/dic/"+this.url_lang+"/word/";
-        baseurl = baseurl + this.$data.searchWord;
+        baseurl = baseurl + this.$data.searchWord.replace(/\//g, "%2F").replace(/\?/g, "%3F");;
         this.word.splice(0,this.word.length);
         var array = this.word;
         axios.get(baseurl)
@@ -240,5 +241,8 @@ import axios from 'axios'
   }
 .dodisplay{
   display:block;
+}
+.el-header{
+  font-size:26px;
 }
 </style>

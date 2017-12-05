@@ -60,5 +60,6 @@
             display: flex;
             background-color: #409EFF;
             justify-content: space-between;
+            font-size: 26px;
         }
 </style>

@@ -43,11 +43,12 @@ export default {
             if(response.data.msg==="success"){
                 window.location.href='http://localhost:8080/#/cholang';
             }else{
-                alert("错误！");
+                alert("账号或密码错误！");
             }
         })
         .catch(function (error) {
             console.log(error);
+            alert("账号或密码错误！");
         });
         }
     }

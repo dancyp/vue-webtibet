@@ -4,7 +4,7 @@
            
                 <span>{{manage_type}}管理</span>
                 <span>欢迎使用多语言专家系统-{{dic_lang}}</span>
-                <span>{{user}} <router-link to="/cho">返回</router-link></span>
+                <span>{{user}} <router-link :to="'/cho/'+url_lang">返回</router-link></span>
            
       </el-header>
       <el-main>
@@ -225,6 +225,7 @@ export default {
         display: flex;
         background-color: #409EFF;
         justify-content: space-between;
+        font-size: 26px;
     }
     
 </style>

@@ -1,6 +1,6 @@
 <template>
   <el-container>
-      <el-header>
+      <el-header >
         <span>{{manage_type}}</span>
         <span>欢迎使用多语言专家系统-{{dic_lang}}</span>
         <span>{{user}} <router-link to="/cholang">返回</router-link></span>       
@@ -47,6 +47,7 @@
       display: flex;
       background-color: #409EFF;
        justify-content:space-between;
+       font-size:26px;
     }
   .el-container{
     display: flex;
@@ -59,4 +60,5 @@
     height: 300px;
     justify-content:space-between;
   }
+  
 </style>
