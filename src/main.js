@@ -7,10 +7,11 @@ import ElementUI from 'element-ui'
 import uploader from 'vue-simple-uploader'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'bootstrap/dist/css/bootstrap.css'
+import FileUpload from 'vue-upload-component/dist/vue-upload-component.part.js'
 import axios from 'axios'
 
-Vue.use(axios)
-
+//Vue.use(axios)
+Vue.use(FileUpload)
 Vue.use(ElementUI)
 Vue.use(uploader)
 Vue.config.productionTip = false

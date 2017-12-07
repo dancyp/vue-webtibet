@@ -9,6 +9,7 @@ import Sep from '../components/sep.vue'
 import Cholang from '../components/cholang.vue'
 import Uploadfile from '../components/uploadfile.vue'
 import Newlogin from '../components/newlogin.vue'
+import Filemanage from '../components/filemanage.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -39,6 +40,9 @@ export default new Router({
   },{
     path:'/newlogin',
     component:Newlogin
+  },{
+    path:'/filemanage/:language',
+    component:Filemanage
   }
   ]
 })

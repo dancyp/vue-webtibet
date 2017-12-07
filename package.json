@@ -12,8 +12,11 @@
   "dependencies": {
     "axios": "^0.17.1",
     "vue": "^2.5.2",
+    "vue-file-upload": "^0.1.7",
     "vue-router": "^3.0.1",
-    "vue-simple-uploader": "^0.3.0"
+    "vue-simple-uploader": "^0.3.0",
+    "vue-upload-component": "^2.7.2",
+    "vue2-multi-uploader": "^1.6.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

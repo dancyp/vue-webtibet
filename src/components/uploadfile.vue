@@ -21,6 +21,9 @@
 </template>
 
 <script>
+import MultipleFileUploader from 'vue2-multi-uploader'
+import FileUpload from 'vue-upload-component/dist/vue-upload-component.part.js'
+import VueFileUpload from 'vue-file-upload';
   export default {
     data () {
       return {
@@ -28,14 +31,19 @@
         user:"admin",
         options: {
           // 可通过 https://github.com/simple-uploader/Uploader/tree/develop/samples/Node.js 示例启动服务
-          target: 'http://139.224.15.56:3000/fileupload',
+          target: 'http://192.168.0.110:3000/fileupload?lang=tibet',
           testChunks: false
         },
         attrs: {
           accept: 'image/*'
         }
       }
-    }
+    },
+     components: {
+            MultipleFileUploader,
+            FileUpload,
+            VueFileUpload
+        },
   }
 </script>
 
@@ -62,4 +70,6 @@
             justify-content: space-between;
             font-size: 26px;
         }
+
+        
 </style>
