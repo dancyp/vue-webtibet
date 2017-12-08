@@ -38,8 +38,8 @@
           </el-table>
         </el-aside>
         <el-main>
-          <div id="uploaderarea">
-            <uploader :options="options" class="uploader-example">
+          <div id="uploaderarea" v-if="this.showlist">
+            <uploader :options="options" class="uploader-example" v-on:file-added="fileAdded" v-on:auto-start="false" >
                 <uploader-unsupport></uploader-unsupport>
                 <uploader-drop>
                 <p>Drop files here to upload or</p>
@@ -53,20 +53,19 @@
             <br>
             <br>
           </div>
-          <div id="head">
-            <input type="text" size="large" placeholder="搜索语料" v-model="searchWord">
-            <el-button type="primary" icon="el-icon-search"size="mini" @click="searchButton">搜索</el-button>
-          </div>
+          
           <div>
               <br>
-              <el-button type="primary"size="mini" v-if="this.flag">下载<i class="el-icon-download el-icon--right"></i></el-button>
+              <el-button type="primary"size="mini" v-if="this.flag" @click="downLoad">下载<i class="el-icon-download el-icon--right"></i></el-button>
           </div>
           <br>
           <div id="twofile" v-if="this.flag">
               <div>
+                <a :href="'http://139.224.15.56:3000/file/downloadfile?lang='+this.url_lang+'&key='+this.downKey+'&doc='+'chinese'" download="this.downKey">点击此处下载</a>
                 <textarea name="" id="" cols="40" rows="20" readonly>{{word[0]}}</textarea>
               </div>
               <div>
+                <a :href="'http://139.224.15.56:3000/file/downloadfile?lang='+this.url_lang+'&key='+this.downKey+'&doc='+'this.url_lang'" :download="this.downKey+'-'+this.url_lang">点击此处下载</a>
                 <textarea name="" id="" cols="40" rows="20" readonly>{{word[1]}}</textarea>
               </div>      
           </div>
@@ -90,8 +89,10 @@ import axios from 'axios'
         showlist: false,
         flag: false,
         word:[],
+        fileInfo:"",
         FileSort:"",
         key:"",
+        downKey:'',
         IniList:[{
           Ini:"A"
         }],
@@ -99,7 +100,7 @@ import axios from 'axios'
         options: {
           // 可通过 https://github.com/simple-uploader/Uploader/tree/develop/samples/Node.js 示例启动服务
           //target: 'http://192.168.0.110:3000/fileupload?lang=tibet&sort='+this.FileSort+'&key='+this.key,
-          target: 'http://139.224.15.56:3000/fileupload?lang=tibet&sort='+'教育'+'&key='+'atf',
+          target: 'http://139.224.15.56:3000/fileupload?lang=tibet&sort='+this.FileSort,
           testChunks: false
         },
         attrs: {
@@ -121,7 +122,6 @@ import axios from 'axios'
       this.IniList.splice(0,this.IniList.length);
       axios.get(baseurl)
         .then(function (response) {
-            console.log(response.data.config_sort);
             for(var i = 0;i<response.data.config_sort.length;i++){
               a.push({Ini:response.data.config_sort[i]});
             }
@@ -131,18 +131,43 @@ import axios from 'axios'
         });
     },
     methods: {
+      downLoad(){
+//"'http://139.224.15.56:3000/file/downloadfile?lang='+this.url_lang+'&key='+this.downKey+'&doc='+'chinese'"
+        var baseurl = "http://139.224.15.56:3000/file/downloadfile?lang="+this.url_lang+"&key="+this.downKey+'&doc=';
+        window.open(baseurl+'chinese');
+        window.open(baseurl+this.url_lang);
+        
+      },
+
+     fileAdded(file){
+       //this.options.target = "";
+       this.fileInfo=file;
+       console.log(this.fileInfo);
+       console.log(this.fileInfo.name);
+       var json = this.fileInfo.name.split(".")
+       json = json[0].split('-');
+       json = json[0];
+      console.log(json);
+      this.key = json;
+      console.log(this.FileSort);
+      //this.options.target = 'http://139.224.15.56:3000/fileupload?lang=tibet&sort='+this.FileSort+'&key='+this.key;
+      console.log("this.options");
+      console.log(this.options);
+     },
       cellIniClick(row,cell){
         this.flag = false;
+        this.options.target = 'http://139.224.15.56:3000/fileupload?lang=tibet&sort='+row.Ini;
+        console.log("this.options");
+        console.log(this.options);
 //curl -X GET "http://139.224.15.56:3000/file/filelist?lang=tibet&sort=%E6%95%99%E8%82%B2" -H "accept: application/json"
         var baseurl = "http://139.224.15.56:3000/file/filelist?lang="+this.url_lang+"&sort="+row.Ini;
+        this.FileSort = row.Ini;
         var a = this.ListTable;
         this.ListTable.splice(0,this.ListTable.length);
         this.word.splice(0,this.word.length);
         this.$data.showlist=true;
         axios.get(baseurl)
         .then(function (response) {
-            console.log(response);
-            console.log(response.data);
             for(var i = 0;i<response.data.length;i++){
               a.push(response.data[i]);
             }
@@ -152,11 +177,12 @@ import axios from 'axios'
         });
       },
       cellWClick(row,cell){
-//curl -X GET "http://139.224.15.56:3000/file/filecontents?lang=tibet&key=111" -H "accept: application/json"
+      //curl -X GET "http://139.224.15.56:3000/file/filecontents?lang=tibet&key=111" -H "accept: application/json"
         var baseurl = "http://139.224.15.56:3000/file/filecontents?lang="+this.url_lang+"&key="+row.key;
         this.flag = true;
         console.log(baseurl);
         this.word.splice(0,this.word.length);
+        this.downKey = row.key;
         var array = this.word;
         axios.get(baseurl)
          .then(function (response) {
@@ -167,20 +193,6 @@ import axios from 'axios'
             console.log(error);
         });
         console.log(this.word);
-      },
-      searchButton(){
-        var baseurl = "http://139.224.15.56:3000/file/filecontents?lang="+this.url_lang+"&key=";
-        baseurl = baseurl + this.$data.searchWord.replace(/\//g, "%2F").replace(/\?/g, "%3F");
-        this.word.splice(0,this.word.length);
-        var array = this.word;
-        axios.get(baseurl)
-         .then(function (response) {
-            array.push(response.data.chfile);
-            array.push(response.data.trfile);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
       }
     }
   }
