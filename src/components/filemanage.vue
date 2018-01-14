@@ -76,7 +76,7 @@
   </el-container>
 </template>
 <script>
-import axios from 'axios'
+import axios from '../http.js'
   export default {
     data() {
       return {
@@ -234,5 +234,10 @@ import axios from 'axios'
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+#twofile div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center ;
 }
 </style>

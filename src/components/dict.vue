@@ -59,7 +59,7 @@
   </el-container>
 </template>
 <script>
-import axios from 'axios'
+import axios from '../http.js'
   export default {
     data() {
       return {

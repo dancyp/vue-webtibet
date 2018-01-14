@@ -21,7 +21,7 @@
     </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from '../http.js';
 export default {
   name:'',
   data () {

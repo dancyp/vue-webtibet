@@ -41,8 +41,12 @@ export default {
         .then(function (response) {
             console.log(response);
             if(response.data.msg==="success"){
-                window.location.href='http://localhost:8080/#/cholang';
+                const token = response.data.token;
+                window.sessionStorage.setItem('token',token)
+                alert('登录成功');
+                window.location.href='http://localhost:8080/#/cholang';    
             }else{
+                window.sessionStorage.removeItem('token');
                 alert("账号或密码错误！");
             }
         })
